@@ -7,7 +7,7 @@ nlp = spacy.load("en_core_web_sm")
 #nltk.download()
 
 #break input sentence into form recogizable by nltk
-text = list(input().split())
+text = list(input().lower().strip('.!').split())
 #tag each type of word
 tokens = pos_tag(text)
 
@@ -21,6 +21,9 @@ print(tokens)
 #verb: (VB, VBG, VBD, VBP, VBZ)
 
 #nltk identifier codes for nouns, adjectives, verbs
+
+if tokens[0][1] == 'DT':
+    text.remove(tokens[0][0])
 
 videntifier = ['VB', 'VBG', 'VBD', 'VBP', 'VBZ']
 verbs = []
@@ -59,9 +62,10 @@ print([(X.text, X.label_) for X in doc.ents])
 if bc == True:
     # How does/did {noun} {verb} {gimojji}
     text.pop(text.index(verbs[0])) 
-
+    text.pop(text.index('because'))
     question = 'How ' + verbs[0] + ' ' +  ' '.join(text) + '?'
     print(question)
+    exit()
 
 place = ['GPE', 'GEO']
 time = ['TIM', 'DATE']
@@ -77,9 +81,11 @@ for i in range(len(entityRec)):
             text.pop(text.index(entityRec[i][0]))
             wh = 'When '
         else:
-            wh = ''
+            wh = 'What '
+            text.pop(text.index(entityRec[i][0]))
+            break
 
 
-text.pop(text.index(verbs[0])) 
+text.pop(text.index(verbs[0]))
 question = wh + verbs[0] + ' ' +  ' '.join(text) + '?'
-print(question)
+print(question.capitalize())

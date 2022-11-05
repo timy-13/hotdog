@@ -6,8 +6,9 @@ nlp = spacy.load("en_core_web_sm")
 
 #nltk.download()
 
+#break input sentence into form recogizable by nltk
 text = list(input().split())
-
+#tag each type of word
 tokens = pos_tag(text)
 
 #tokenize breaks sent
@@ -19,32 +20,41 @@ print(tokens)
 #noun: (NN, NNS, NNP, NNPS)
 #verb: (VB, VBG, VBD, VBP, VBZ)
 
-nidentifier = ['NN', 'NNS', 'NNP', 'NNPS']
-aidentifier= ['JJ', 'JJR', 'JJS']
+#nltk identifier codes for nouns, adjectives, verbs
+
 videntifier = ['VB', 'VBG', 'VBD', 'VBP', 'VBZ']
-nouns = []
-adjs = []
 verbs = []
+nums = []
 bc = False
 
-
+#Separate each word in sentence by their type
 for i in range(len(tokens)):
+    if tokens[i][1] in videntifier:
+        verbs.append(tokens[i][0])
+    elif tokens[i][0] == 'because':
+        bc = True
+        text = text[:i]
+
+"""
+nidentifier = ['NN', 'NNS', 'NNP', 'NNPS']
+aidentifier= ['JJ', 'JJR', 'JJS']
+nouns = []
+adjs = []
+
     if tokens[i][1] in nidentifier:
         nouns.append(tokens[i][0])
     elif tokens[i][1] in aidentifier:
         adjs.append(tokens[i][0])
-    elif tokens[i][1] in videntifier:
-        verbs.append(tokens[i][0])
-    elif tokens[i][0] == 'because':
-        bc = True
-        #text[i].remove()
-        text = text[:i]
-
-
-
+    elif tokens[i][1] == 'CD':
+        nums.append(tokens[i][0])
+"""
 #if 'going' in verbs:
     #where is {noun} going?
     #lemmas for going
+
+doc = nlp(' '.join(text))
+entityRec = [(X.text, X.label_) for X in doc.ents]
+print([(X.text, X.label_) for X in doc.ents])
 
 if bc == True:
     # How does/did {noun} {verb} {gimojji}
@@ -53,13 +63,23 @@ if bc == True:
     question = 'How ' + verbs[0] + ' ' +  ' '.join(text) + '?'
     print(question)
 
-else:
+place = ['GPE', 'GEO']
+time = ['TIM', 'DATE']
+wh = ''
+for i in range(len(entityRec)):
+        if entityRec[i][1] in place:
+            text.pop(text.index(entityRec[i][0]))
+            wh = 'Where '
+        elif entityRec[i][1] == 'PERSON':
+            text.pop(text.index(entityRec[i][0]))
+            wh = 'Who '
+        elif entityRec[i][1] in time:
+            text.pop(text.index(entityRec[i][0]))
+            wh = 'When '
+        else:
+            wh = ''
 
-    text.pop(text.index(verbs[0]))
 
-    question = verbs[0] + ' ' + ' '.join(text) + '?'
-    print(question)
-    
-
-entityRec = nlp(nouns)
-print(entityRec)
+text.pop(text.index(verbs[0])) 
+question = wh + verbs[0] + ' ' +  ' '.join(text) + '?'
+print(question)

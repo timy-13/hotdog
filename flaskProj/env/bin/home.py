@@ -12,8 +12,11 @@ def home():
 def my_form_post():
     if request.method == 'POST':
         text = request.form.get('taname')
-        input_text = text.upper()
-        processed_text1 = sentence.questionGen(input_text)
+        input_text = sentence.lineInput(text)
+        processed_text_list = ['\n']
+        for line in input_text:
+            processed_text_list.append(sentence.questionGen(line))
+        processed_text1 = '\n'.join(processed_text_list)
     return render_template('main.html', taname = input_text, processed_text = processed_text1)
 
 if __name__ == '__main__':

@@ -2,16 +2,16 @@ import nltk
 from nltk import pos_tag
 import spacy
 
+def lineInput(para):
+    lines = list(para.split('\n'))
+    return lines
+
 def questionGen(inText):
 
     nlp = spacy.load("en_core_web_sm")
 
-    #nltk.download()
-
-    #break input sentence into form recogizable by nltk
-    #text = list(input().lower().strip('.!').split())
     text = list(inText.lower().strip('.!').split())
-    
+
     #tag each type of word
     tokens = pos_tag(text)
 
@@ -25,7 +25,6 @@ def questionGen(inText):
     #verb: (VB, VBG, VBD, VBP, VBZ)
 
     #nltk identifier codes for nouns, adjectives, verbs
-
     if tokens[0][1] == 'DT':
         text.remove(tokens[0][0])
 
@@ -42,29 +41,11 @@ def questionGen(inText):
             bc = True
             text = text[:i]
 
-    """
-    nidentifier = ['NN', 'NNS', 'NNP', 'NNPS']
-    aidentifier= ['JJ', 'JJR', 'JJS']
-    nouns = []
-    adjs = []
-
-        if tokens[i][1] in nidentifier:
-            nouns.append(tokens[i][0])
-        elif tokens[i][1] in aidentifier:
-            adjs.append(tokens[i][0])
-        elif tokens[i][1] == 'CD':
-            nums.append(tokens[i][0])
-    """
-    #if 'going' in verbs:
-        #where is {noun} going?
-        #lemmas for going
-
     doc = nlp(' '.join(text))
     entityRec = [(X.text, X.label_) for X in doc.ents]
     print([(X.text, X.label_) for X in doc.ents])
 
     if bc == True:
-        # How does/did {noun} {verb} {gimojji}
         text.pop(text.index(verbs[0])) 
         text.pop(text.index('because'))
         question = 'How ' + verbs[0] + ' ' +  ' '.join(text) + '?'

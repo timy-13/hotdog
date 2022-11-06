@@ -1,13 +1,12 @@
 body {
-    background-color: rgb(37, 35, 35);
+    background-image: linear-gradient(to right,rgba(242, 155, 112, 0.767),rgba(133, 245, 133, 0.774),rgba(120, 187, 225, 0.699));
     }
 
 #input {  
-    width: 35%;
-    height: 100px;
-    padding: 5px 5px;
+    width: 50%;
+    height: 200px;
+    padding: 10x 10px;
     row-gap: 10px;
-    word-wrap: break-word;
 }
 
 
@@ -19,29 +18,59 @@ body {
     font-size: 100px;
     color: rgba(251, 255, 255, 0.705);
 }
-.submission{
+.description{
     text-align:center;
-    color: rgba(96, 232, 232, 0.805);
+    color: rgba(255, 255, 255, 0.805);
+
 }
+
+
+
+p{
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    
+}
+.hello{
+    text-align: center;
+
+    
+}
+
 
 textarea{
     background-color:rgba(251, 255, 255, 0.705) ;
     text-decoration: none;
+    padding: 10x 10px;
+    border: 4px solid;
+    border-color: rgb(52, 171, 131);
+    font-size: 15px;
 
-    border: none;
+}
+textarea:focus{
+    outline: none !important;
+    border:4px solid rgb(56, 140, 208);
 
 }
 
+
+
+
 input[type=button], input[type=submit], input[type=reset] {
-    background-color: rgb(255, 166, 0);
+    background-color: rgb(238, 255, 2); 
 
-    margin: 4px 2px;
+    margin: 8px 2px;
     padding: 10px 20px;
-    border: 15px;
-    border-color: orange;
-        cursor: pointer;
+    border:none;
+    border-radius: 100px;
 
-
+    cursor:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
 
 
 

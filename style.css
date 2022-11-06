@@ -1,8 +1,6 @@
 body {
-    background-color: aquamarine;
-    background-blend-mode: color-dodge;
-    
-}
+    background-color: rgb(37, 35, 35);
+    }
 
 #input {  
     width: 35%;
@@ -16,19 +14,47 @@ body {
 
 .title{
     text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: initial;
+    font-size: 100px;
+    color: rgba(251, 255, 255, 0.705);
 }
-.testformid{
-    text-align: center;
+.submission{
+    text-align:center;
+    color: rgba(96, 232, 232, 0.805);
 }
-/*
-#input {
 
-    width: 300px;
-    height: 50px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    /*resize: none;*/
+textarea{
+    background-color:rgba(251, 255, 255, 0.705) ;
+    text-decoration: none;
+
+    border: none;
+
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: rgb(255, 166, 0);
+
+    margin: 4px 2px;
+    padding: 10px 20px;
+    border: 15px;
+    border-color: orange;
+        cursor: pointer;
+
+
+
+
+
+
+    /*
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    */
+  }
+
+
 

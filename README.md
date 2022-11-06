@@ -8,8 +8,7 @@ A study helper for students that need practice questions and assistance in memor
 - Run the file "home.py" and follow the link in the terminal starting with "http://". The site will open in a web browser.
 - In the upper text box, enter lines of text and click submit.
     
--   NOTE: The input must be in complete simple sentences. Compound sentences and complex sentences will result in improper output.
--       If entering multiple sentences, each sentence must be typed on a new line.
+-   NOTE: The input must be in complete simple sentences. Compound sentences and complex sentences will result in improper output. If entering multiple sentences, each sentence must be typed on a new line.
     
 # Notes and Assumptions:
 - The program runs a site which takes text input and transforms the text into questions which is then output to the site.
